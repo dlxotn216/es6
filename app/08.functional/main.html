@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+
+<div id="container"></div>
+
+</body>
+<script>
+    const compose = (...fns) =>
+        fns.reduceRight((prevFn, nextFn) =>
+                (...args) => nextFn(prevFn(...args)),
+            value => value
+        );
+
+    let save = (name) => console.log(`save ${name}`);
+    let logging = () => console.log('work applied');
+    let prepare = () => console.log('pareparing param');
+
+    compose(
+        save('leetaesu'),
+        logging(),
+        prepare()
+    );
+
+    const selfEducate = (person) => ({
+        ...person,
+        canRead: true,
+        canWrite: true
+    }); //객체 복사본을 만들기 위해 스프레드 연산자를 사용하며 반드시 소괄호로 감싸줌
+
+    let taesu = {
+        name: 'lee',
+        canRead: false,
+        canWrite: false
+    };
+    console.log('check :', taesu);
+    console.log('check :', selfEducate(taesu));
+    console.log('check :', taesu);              //불변성이 유지됨\
+
+    const people = ['lee', 'park', 'yoon', 'kim'];
+    console.log(people.filter((name) => name.length > 3));
+    console.log(people.join(','));
+
+    console.log(people.reduce((total, name) => total + name.length, 0));
+
+    console.log(people.map((name) => name + ': added').join(','));
+
+</script>
+</html>
