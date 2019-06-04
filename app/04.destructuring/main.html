@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #container div {
+            width: 100px;
+            height: 100px;
+            border: solid 1px black;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container"></div>
+
+</body>
+<script>
+    const sandwich = {
+        bread: 'flat bread',
+        meat: 'tuna',
+        cheese: 'goda',
+        toppings: ['tomato', 'olive']
+    };
+
+    const {bread, meat} = sandwich;
+    console.log(bread);
+    console.log(meat);
+
+    //필요한 값만 구조분해로 가져올 수 있으며 조금 더 선언적 표현임
+    const destruct = ({bread, meat}) => console.log(`${bread} plus ${meat}`);
+    destruct(sandwich);
+
+    //배열에 대한 분해
+    let [firstTopping, secondTopping] = sandwich.toppings;
+    let [, anotherSecondTopping] = sandwich.toppings;
+    console.log(firstTopping, secondTopping, anotherSecondTopping);
+
+
+    //object literial
+    let name = 'leetaesu';
+    let age = 27;
+    let print = function () {
+        console.log(`${this.name} is ${this.age} year's old`)
+    };
+    const taesu = {name, age, print};
+
+    console.log(taesu);
+    taesu.print();
+
+    let peaks = ['대청봉', '중청봉', '소청봉'];
+    console.log(peaks.join(','));
+    peaks.reverse();
+    console.log(peaks.join(','));   //원본 배열을 변경함
+
+
+    console.log('스프레드 연산자 사용');
+    peaks = ['대청봉', '중청봉', '소청봉'];
+    let [...cloned] = peaks;
+    cloned.reverse();
+    console.log(`peaks: ${peaks}`);
+    console.log(`reversed peaks: ${cloned}`);
+    
+    let cloned2 = [...peaks, 'new aa'];
+    console.log('cloned2', cloned2);
+    
+
+    console.log('객체 스프레드 연산자 사용');
+    let morning = {
+        breakfast: 'aaa',
+        lunch: 'bbb'
+    };
+    let dinner = 'ccc';
+    let newMorning = {
+        ...morning,
+        dinner
+    };
+    console.log(newMorning);
+    
+
+</script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #container div {
+            width: 100px;
+            height: 100px;
+            border: solid 1px black;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container"></div>
+
+</body>
+<script>
+    //const
+    const name = 'lee';
+    var nameVar = 'lee';
+
+    //name= 'test';     //const는 불변
+    nameVar = 'test';
+
+    //let
+    let topic = 'es6';
+    var topicVar = 'es6';
+    topic += ' hello';
+    topicVar += ' hello';
+
+
+    const container = document.getElementById('container');
+    for (var i = 0; i < 5; i++) {
+        var div = document.createElement('div');
+        div.onclick = (function () {
+            alert(`${i} element`);      //55555
+        });
+        container.appendChild(div);
+    }
+
+    //let은 렉시컬 스코프를 지원한다 (블록 한정)
+    for (let i = 0; i < 5; i++) {
+        const div = document.createElement('div');
+        div.onclick = (function () {    
+            alert(`${i} element`);      //01234
+        });
+        container.appendChild(div);
+    }
+
+
+</script>
+</html>

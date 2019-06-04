@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #container div {
+            width: 100px;
+            height: 100px;
+            border: solid 1px black;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container"></div>
+
+</body>
+<script>
+    let whoareyou = function (name) {
+        return `my name is ${name}`;
+    };
+    console.log(whoareyou('leetaesu'));
+
+    whoareyou = (name) => {
+        return `my name is ${name}`;
+    };
+    console.log(whoareyou('leetaesu'));
+
+    whoareyou = (name) => `my name is ${name}`;
+    console.log(whoareyou('leetaesu'));
+
+    let leetaesu = {
+        firstName: 'lee',
+        lastName: 'taesu',
+        print: function () {
+            console.log(`${this.firstName} ${this.lastName}`);
+        },
+        delayPrint: function (delay = 1000) {
+            //lambda는 새로운 this 바인딩을 만들지 않음
+            setTimeout(() => {
+                console.log(`${this.firstName} ${this.lastName}`);
+            }, delay);
+
+            //function은 새로운 this 바인딩을 만들어냄
+            setTimeout(function () {
+                console.log(this === window);       //true
+            }, delay);
+        }
+    };
+
+    leetaesu.print();
+    leetaesu.delayPrint();
+</script>
+</html>
